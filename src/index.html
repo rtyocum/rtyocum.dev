@@ -204,11 +204,25 @@ title: Ryan Yocum &mdash; Software Engineer
 			<h2 class="title is-3 mb-0">Contact</h2>
 			<hr class="is-flex-grow-1 mx-0 my-0" />
 		</div>
-		<div class="box">
-
+		<div class="box form-wrapper">
+			<!-- OVERLAY -->
+			<div class="form-overlay" id="form-overlay">
+				<div class="loader-spinner" id="loader-spinner">
+					<svg width="128" height="128" viewBox="0 0 128 128" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<circle cx="64" cy="64" r="59" stroke="#2a2a2a" stroke-width="10" />
+						<circle id="loader-border" cx="64" cy="64" r="59" stroke="#48c78e"
+							stroke-width="10" />
+						<path id="loader-check" stroke="#48c78e" stroke-linecap="round"
+							stroke-width="15"
+							d="m33 62 23.709 24.193a1 1 0 0 0 1.496-.076L76.25 63.5 95 40" />
+						<path id="loader-x" d="M36 36L92 92M36 92L92 36" stroke="white" stroke-width="15"
+							stroke-linecap="round" />
+					</svg>
+				</div>
+				<span class="overlay-caption" id="overlay-caption">Message sent successfully</span>
+			</div>
 			<form id="contact-form" class="is-flex is-flex-direction-column is-gap-4">
-				<p id="contact-form-error" class="mb-4"></p>
-
 				<div class="field name-field">
 					<label class="label">Name</label>
 					<div class="control">
@@ -239,7 +253,8 @@ title: Ryan Yocum &mdash; Software Engineer
 				</div>
 				<div class="cf-turnstile" data-sitekey="{{ site.data.contact.cf_sitekey }}"></div>
 				<div class="control">
-					<button class="button is-success" type="submit">Send</button>
+					<button id="contact-submit" class="button is-success"
+						type="submit">Send</button>
 				</div>
 			</form>
 		</div>

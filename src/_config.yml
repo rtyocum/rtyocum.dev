@@ -17,8 +17,11 @@ defaults:
     values:
       layout: "default"
 
+url: "https://rtyocum.dev"
+
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 sass:
   sourcemap: development

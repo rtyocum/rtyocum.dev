@@ -34,16 +34,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 const contactForm = document.getElementById('contact-form');
-const contactFormError = document.getElementById('contact-form-error');
+const formOverlay = document.getElementById('form-overlay');
+const loaderBorder = document.getElementById('loader-border');
+const overlayCaption = document.getElementById('overlay-caption');
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+
+
+function showLoading() {
+	submitButton.disabled = true;
+	formOverlay.classList.add('visible');
+}
+
+function showSuccess(message) {
+	loaderBorder.style.transform = getComputedStyle(loaderBorder).transform;
+	loaderBorder.style.animation = 'none';
+
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			formOverlay.classList.add('complete');
+			overlayCaption.textContent = message || 'Message sent successfully!';
+			overlayCaption.classList.add('visible');
+		});
+	});
+}
+
+function showError(message) {
+	loaderBorder.style.transform = getComputedStyle(loaderBorder).transform;
+	loaderBorder.style.animation = 'none';
+
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			formOverlay.classList.add('error');
+			overlayCaption.textContent = message || 'Something went wrong.';
+			overlayCaption.classList.add('visible');
+		});
+	});
+	setTimeout(hideOverlay, 3500);
+}
+
+function hideOverlay() {
+	formOverlay.classList.remove('visible');
+	submitButton.disabled = false;
+	setTimeout(() => {
+		formOverlay.classList.remove('complete', 'error');
+		overlayCaption.classList.remove('visible');
+		loaderBorder.style.transform = '';
+		loaderBorder.style.animation = '';
+	}, 300);
+}
 
 contactForm.addEventListener('submit', async (event) => {
 	event.preventDefault();
 
-	const submitButton = contactForm.querySelector('button[type="submit"]');
-	submitButton.disabled = true;
-
+	showLoading();
 	try {
 		// Collect all form values into an object
 		const formData = new FormData(contactForm);
@@ -63,20 +108,20 @@ contactForm.addEventListener('submit', async (event) => {
 
 		if (result.success) {
 			contactForm.reset();
-			contactFormError.classList.remove('has-text-danger');
-			contactFormError.classList.add('has-text-success');
-			contactFormError.textContent = 'Message sent successfully!';
+			showSuccess(result.message || 'Message sent successfully!');
+			setTimeout(() => {
+				hideOverlay();
+			}, 3000);
 		} else {
-			contactFormError.classList.remove('has-text-success');
-			contactFormError.classList.add('has-text-danger');
-			contactFormError.textContent = result.message || 'Failed to send message.';
+			showError(result.message || 'Failed to send message.');
+			setTimeout(() => {
+				hideOverlay();
+			}, 3500);
 		}
 
 	} catch (err) {
 		console.error(err);
-		contactFormError.classList.remove('has-text-success');
-		contactFormError.classList.add('has-text-danger');
-		contactFormError.textContent = 'An error occurred. Please try again.';
+		hideOverlay();
 	} finally {
 		submitButton.disabled = false;
 	}

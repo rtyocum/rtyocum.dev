@@ -20,6 +20,107 @@
   }
 }
 
+.form-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(14, 14, 14, 0.82);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.form-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+#loader-track {
+  stroke: #2a2a2a;
+}
+
+#loader-border {
+  stroke: var(--bulma-success);
+  stroke-dasharray: 377;
+  stroke-dashoffset: 277;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 0.8s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+}
+
+/* success state */
+.form-overlay.complete .loader-spinner #loader-border {
+  stroke: var(--bulma-success);
+  transform: none;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.6s ease, transform 0.3s ease;
+  animation: none;
+}
+
+.form-overlay.error .loader-spinner #loader-border {
+  stroke: var(--bulma-danger);
+  transform: none;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.6s ease, transform 0.3s ease;
+  animation: none;
+}
+
+#loader-check {
+  fill: none;
+  stroke: var(--bulma-success);
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 0.4s ease 0.5s;
+}
+
+.form-overlay.complete .loader-spinner #loader-check {
+  stroke-dashoffset: 0;
+}
+
+#loader-x {
+  fill: none;
+  stroke: var(--bulma-danger);
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 0.4s ease 0.5s;
+}
+
+.form-overlay.error .loader-spinner #loader-x {
+  stroke-dashoffset: 0;
+}
+
+.overlay-caption {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease 0.85s, transform 0.4s ease 0.85s;
+}
+
+.form-overlay.error .overlay-caption {
+  color: var(--bulma-danger);
+}
+
+.overlay-caption.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
 /* ── Footer ── */
 .site-footer {
   background-color: var(--surface) !important;

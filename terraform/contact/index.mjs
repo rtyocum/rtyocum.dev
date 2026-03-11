@@ -43,11 +43,11 @@ export const handler = async (event) => {
     }
 
     // ---------------- Basic Validation ----------------
-    if (!name || !email || !message) return resp(400, false, "Missing fields");
-    if (!captcha) return resp(400, false, "Captcha missing");
-    if (name.length > 200) return resp(400, false, "Name too long");
-    if (email.length > 320) return resp(400, false, "Email too long");
-    if (message.length > 5000) return resp(400, false, "Message too long");
+    if (!name || !email || !message) return resp(400, false, "Please fill in all required fields");
+    if (!captcha) return resp(400, false, "You must complete the CAPTCHA");
+    if (name.length > 200) return resp(400, false, "Name must be less than 200 characters");
+    if (email.length > 320) return resp(400, false, "Email must be less than 320 characters");
+    if (message.length > 5000) return resp(400, false, "Message must be less than 5000 characters");
 
     // ---------------- Verify Turnstile ----------------
     const verify = await fetch(
