@@ -1,0 +1,27 @@
+/* ── Navbar ── */
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  background-color: var(--bg) !important;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-item,
+.navbar-link {
+  color: var(--muted) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+}
+
+.navbar-item:hover {
+  color: var(--text) !important;
+  background-color: transparent !important;
+}
+
+.navbar-burger span {
+  background-color: var(--muted);
+}

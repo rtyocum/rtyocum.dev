@@ -1,0 +1,92 @@
+/* ── Box ── */
+.box {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: none;
+  transition: border-color .2s, transform .2s;
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  p {
+    color: var(--muted);
+  }
+}
+
+a.box {
+  color: var(--text);
+  box-shadow: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: var(--text);
+    box-shadow: none;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Tags ── */
+.tag.is-dark {
+  background-color: var(--tag-bg);
+  color: var(--accent-tag);
+  border: 1px solid var(--tag-border);
+}
+
+/* ── Section / dividers ── */
+.section {
+  background-color: var(--bg);
+}
+
+section[id] {
+  scroll-margin-top: 56px;
+}
+
+hr {
+  background-color: var(--border);
+}
+
+/* ── Utility overrides ── */
+.has-text-grey {
+  color: var(--muted) !important;
+}
+
+.has-text-primary {
+  color: var(--accent) !important;
+}
+
+.has-text-success {
+  color: var(--accent) !important;
+}
+
+.is-family-monospace {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.is-half-spaced {
+  letter-spacing: .05em;
+}
+
+.is-wide-spaced {
+  letter-spacing: .1em;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.max-w-2xl {
+  max-width: 600px;
+}

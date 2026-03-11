@@ -1,0 +1,55 @@
+/* ── Base ── */
+html,
+body {
+  background-color: var(--bg) !important;
+  color: var(--text);
+}
+
+.icon svg {
+  height: 1em;
+  width: 1em;
+}
+
+/* ── Typography ── */
+.title {
+  color: var(--text) !important;
+}
+
+.subtitle {
+  color: var(--muted) !important;
+}
+
+.hero.is-dark {
+  background-color: var(--bg-hero) !important;
+}
+
+.hero .title {
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+
+.hero .intro-text svg {
+  fill: var(--muted);
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+  animation: strokeFadeIn 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 0 var(--accent));
+}
+
+@keyframes strokeFadeIn {
+  from {
+    fill: var(--muted);
+    filter: drop-shadow(0 0 0 var(--accent));
+  }
+
+  50% {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 5px var(--accent));
+  }
+
+  to {
+    fill: var(--muted);
+    filter: drop-shadow(0 0 0 var(--accent));
+  }
+}

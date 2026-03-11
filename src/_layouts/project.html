@@ -1,0 +1,97 @@
+---
+layout: default
+---
+
+<!-- PROJECT HERO -->
+<section class="hero is-dark p-6">
+	<div class="hero-body">
+		<div class="container">
+			<a href="{{ '/#projects' | relative_url }}"
+				class="is-family-monospace has-text-grey is-size-7 is-flex is-align-items-center mb-4 is-gap-1 is-half-spaced">
+				← back to projects
+			</a>
+			<p class="is-family-monospace has-text-success is-size-7 mb-3 is-wide-spaced">
+				{{ page.order | prepend: '00' | slice: -3, 3 }} · {{ page.organization }}
+			</p>
+			<h1 class="title is-2 mb-3">{{ page.title }}</h1>
+			{% if page.description %}
+			<p class="subtitle is-6 has-text-grey max-w-2xl">{{ page.description }}</p>
+			{% endif %}
+			{% if page.github or page.demo %}
+			<div class="buttons mt-4">
+				{% if page.github %}
+				<a class="button is-success" href="{{ page.github }}" target="_blank">
+					<span class="icon">
+						{% include icons/github.svg %}
+					</span>
+					<span>GitHub</span>
+				</a>
+				{% endif %}
+				{% if page.demo %}
+				<a class="button is-light is-outlined" href="{{ page.demo }}" target="_blank">Live
+					Demo</a>
+				{% endif %}
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+<!-- PROJECT CONTENT -->
+<section class="section">
+	<div class="container">
+		<div class="columns">
+
+			<!-- Main content -->
+			<div class="column is-three-quarters">
+				<div class="box content">
+					{{ content }}
+				</div>
+			</div>
+
+			<!-- Sidebar -->
+			<div class="column">
+				{% if page.tags %}
+				<div class="box mb-4">
+					<p class="is-family-monospace is-size-7 has-text-success mb-3 is-wide-spaced">
+						STACK</p>
+					<div class="tags">
+						{% for tag in page.tags %}
+						<span class="tag is-dark">{{ tag }}</span>
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if page.organization %}
+				<div class="box mb-4">
+					<p class="is-family-monospace is-size-7 has-text-success mb-3 is-wide-spaced">
+						ORGANIZATION</p>
+					<p class="is-size-7">{{ page.organization }}</p>
+				</div>
+				{% endif %}
+
+				{% if page.github or page.demo %}
+				<div class="box">
+					<p class="is-family-monospace is-size-7 has-text-success mb-3 is-wide-spaced">
+						LINKS</p>
+					{% if page.github %}
+					<a href="{{ page.github }}" target="_blank"
+						class="is-flex is-align-items-center has-text-grey is-size-7 mb-2 is-gap-2">
+						{% include icons/github.svg %}
+						GitHub
+					</a>
+					{% endif %}
+					{% if page.demo %}
+					<a href="{{ page.demo }}" target="_blank"
+						class="is-flex is-align-items-center has-text-grey is-size-7 is-gap-2">
+						↗ Live Demo
+					</a>
+					{% endif %}
+				</div>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+</section>

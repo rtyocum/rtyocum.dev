@@ -1,0 +1,27 @@
+/* ── Project number ── */
+.project-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  color: var(--accent);
+  margin-bottom: .5rem;
+  letter-spacing: .1em;
+}
+
+/* ── Experience timeline ── */
+.exp-entry {
+  border-left: 2px solid var(--border);
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+  transition: border-color .2s;
+
+  &:hover {
+    border-left-color: var(--accent);
+  }
+}
+
+/* ── Footer ── */
+.site-footer {
+  background-color: var(--surface) !important;
+  border-top: 1px solid var(--border);
+}

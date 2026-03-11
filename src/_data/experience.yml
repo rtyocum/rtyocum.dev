@@ -1,0 +1,23 @@
+- job_title: Process Engineering Intern
+  company: GlobalFoundries
+  location: Malta, NY
+  dates:
+    - May '23 – Aug '23
+    - May '24 – Aug '24
+    - Jan '25 – Aug '25
+  bullets:
+    - Built defect visualization tools to make CFM binning data readable for
+      engineers
+    - Automated shift passdown slide generation (Angular + Go, ~100 slides in
+      <30s)
+    - Developed internal product tracking system for the engineering team
+    - Set up Jenkins CI pipeline for automated deployment and hotfix delivery
+    - Supported daily Linux deployment and infrastructure tasks
+- job_title: Course Assistant
+  company: Rochester Institute of Technology
+  location: Rochester, NY
+  dates:
+    - Jan '23 – May '23
+  bullets:
+    - Assisted professor with grading and student support sessions
+    - Built and hosted an interactive Angular workshop for students

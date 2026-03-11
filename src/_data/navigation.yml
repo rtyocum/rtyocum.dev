@@ -1,0 +1,10 @@
+links:
+  - name: projects
+    link: "#projects"
+  - name: experience
+    link: "#experience"
+  - name: skills
+    link: "#skills"
+  - name: contact
+    link: "#contact"
+titletext: ~/rtyocum

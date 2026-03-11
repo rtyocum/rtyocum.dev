@@ -1,0 +1,33 @@
+<div id="terminalContainer" class="terminal-container is-hidden-tablet-only is-hidden-mobile">
+  <div id="terminalRoot" class="terminal-root">
+    <div class="box">
+
+      <!-- title bar -->
+      <div class="terminal-bar">
+        <span class="terminal-bartitle">~ &mdash; zsh</span>
+        <div id="terminalClose" class="terminal-close">
+          {% include icons/terminal-close.svg %}
+        </div>
+      </div>
+
+      <!-- fixed-height scroll area -->
+      <div class="terminal-body">
+        <div class="terminal-scroll" id="twScroll"></div>
+      </div>
+
+      <!-- fixed status bar -->
+      <div class="terminal-statusbar">
+        <span><span class="terminal-status-dot"></span>online</span>
+        <span id="terminalClock"></span>
+      </div>
+
+    </div>
+  </div>
+  <div class="trash">
+    {% include icons/trash.svg %}
+  </div>
+  <button id="terminalOpen" class="terminal-open button is-outlined is-link is-hidden-mobile is-hidden">Spawn
+    Terminal</button>
+</div>
+<script>const LICK_URL = "{{ '/assets/img/lick.svg' | relative_url }}"</script>
+<script src="{{ '/assets/js/terminal.js' | relative_url }}" defer></script>

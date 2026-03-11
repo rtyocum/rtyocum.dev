@@ -1,0 +1,247 @@
+---
+layout: default
+title: Ryan Yocum &mdash; Software Engineer
+---
+
+<!-- HERO -->
+<section class="hero is-dark is-medium" style="padding-top: 3.5rem;">
+	<div class="hero-body">
+		<div class="container">
+			<div class="columns is-vcentered">
+
+				<div class="column">
+					<div class="intro-text is-flex is-align-items-center mb-3 gap-2">
+						{% include icons/diamond.svg %}
+						<p
+							class="is-family-monospace has-text-success is-size-7 is-wide-spaced">
+
+							BS/MS SOFTWARE ENGINEERING · RIT
+						</p>
+					</div>
+					<h1 class="title is-1 mb-2">
+						Ryan <span class="has-text-success">Yocum</span>
+					</h1>
+					<p class="subtitle is-5 mb-5">
+						Embedded Systems &middot; Full Stack Development &middot; Automation
+					</p>
+					<p class="has-text-grey mb-5 max-w-2xl">
+						I'm a software engineer specializing in full stack development, embedded
+						systems, as well as automation and tooling.
+					</p>
+					<p class="is-family-monospace is-size-7 has-text-grey mb-5">
+						also a <a href="https://github.com/rtyocum/config.nvim" target="_blank"
+							class="has-text-success">nvim</a> + <a
+							href="https://github.com/rtyocum/linux-config" target="_blank"
+							class="has-text-success">linux</a> dev :)
+					</p>
+					<div class="buttons">
+						<a class="button is-success" href="{{ site.data.social.github }}"
+							target="_blank">
+							<span class="icon">
+								{% include icons/github.svg %}
+							</span>
+							<span>GitHub</span>
+						</a>
+						<a class="button is-info" href="{{ site.data.social.linkedin }}"
+							target="_blank">
+							<span class="icon">
+								{% include icons/linkedin.svg %}
+							</span>
+							<span>LinkedIn</span>
+						</a>
+						<!--My resume-->
+						<a class="button is-link" href="/assets/Ryan_Yocum_Resume.pdf"
+							target="_blank">
+							<span class="icon">
+								{% include icons/file-text.svg %}
+							</span>
+							<span>Resume</span>
+						</a>
+					</div>
+				</div>
+
+				{% include terminal.html %}
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+	<div class="container">
+
+		<div class="is-flex is-align-items-center mb-5 is-gap-2">
+			<span class="is-family-monospace has-text-success is-size-7 is-wide-spaced">01</span>
+			<h2 class="title is-3 mb-0">Featured Projects</h2>
+			<hr class="is-flex-grow-1 mx-0 my-0" />
+		</div>
+
+		<div class="columns is-multiline">
+
+			{% assign sorted_projects = site.projects | sort: "order" %}
+			{% for project in sorted_projects %}
+			{% assign padded_order = project.order | prepend: "0000" | slice: -3, 3 %}
+			<div class="column is-one-third">
+				<a href="{{ project.url | relative_url }}"
+					class="box p-5 is-flex is-flex-direction-column" style="height:100%;">
+					<span class="project-num">{{ padded_order }} · {{ project.organization
+						}}</span>
+					<h3 class="title is-5 mb-3">{{ project.title }}</h3>
+					<p class="mb-4" style="flex:1;">
+						{{ project.description }}
+					</p>
+					<div class="tags">
+						{% for tag in project.tags %}
+						<span class="tag is-dark">{{ tag }}</span>
+						{% endfor %}
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+	<div class="container">
+
+		<div class="is-flex is-align-items-center mb-5" style="gap:1rem;">
+			<span class="is-family-monospace has-text-success is-size-7 is-wide-spaced">02</span>
+			<h2 class="title is-3 mb-0">Experience</h2>
+			<hr class="is-flex-grow-1 mx-0 my-0" />
+		</div>
+
+		{% for experience in site.data.experience %}
+		<div class="exp-entry">
+			<div class="mb-3">
+				<div class="is-flex is-justify-content-space-between is-flex-wrap-wrap is-gap-1">
+					<div>
+						<p class="title is-5 mb-1">{{ experience.job_title }}</p>
+						<p
+							class="is-family-monospace is-size-7 has-text-success is-half-spaced">
+							{{ experience.company }} &mdash; {{
+							experience.location }}</p>
+					</div>
+					<div class="is-family-monospace is-size-7 has-text-grey">
+						{%for date in experience.dates %}
+						<div>{{ date }}</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<ul class="p-0">
+				{% for bullet in experience.bullets %}
+				<li class="mb-2 has-text-grey">&mdash; {{ bullet }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+	<div class="container">
+
+		<div class="is-flex is-align-items-center mb-5 is-gap-2">
+			<span class="is-family-monospace has-text-success is-size-7 is-wide-spaced">03</span>
+			<h2 class="title is-3 mb-0">Skills</h2>
+			<hr class="is-flex-grow-1 mx-0 my-0" />
+		</div>
+
+		<div class="columns is-multiline">
+			{% for skill_category in site.data.skills %}
+			<div class="column is-half-tablet is-one-quarter-desktop">
+				<div class="box">
+					<p class="is-family-monospace is-size-7 has-text-success mb-3 is-wide-spaced">{{
+						skill_category.name | upcase }}</p>
+					<div class="tags">
+						{% for skill in skill_category.entries %}
+						<span class="tag is-dark">{{ skill }}</span>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</section>
+<!-- ACTIVITIES -->
+<section class="section">
+	<div class="container">
+		<div class="is-flex is-align-items-center mb-5 is-gap-2">
+			<span class="is-family-monospace has-text-success is-size-7 is-wide-spaced">04</span>
+			<h2 class="title is-3 mb-0">Activities</h2>
+			<hr class="is-flex-grow-1 mx-0 my-0" />
+		</div>
+		<div class="columns is-multiline">
+			{% for activity in site.data.activities %}
+			<div class="column is-half">
+				<a href="{{ activity.link }}" target="_blank"
+					class="box is-flex is-align-items-center is-gap-2">
+					<span class="is-size-3">{{ activity.icon }}</span>
+					<div>
+						<p class="title is-6 mb-0">{{ activity.title }}</p>
+						<p class="has-text-grey is-size-7">{{ activity.organization }}</p>
+						<p class="is-family-monospace has-text-grey is-size-7 mb-0">{{
+							activity.dates }}</p>
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+	<div class="container">
+		<div class="is-flex is-align-items-center mb-5 is-gap-2">
+			<span class="is-family-monospace has-text-success is-size-7 is-wide-spaced">05</span>
+			<h2 class="title is-3 mb-0">Contact</h2>
+			<hr class="is-flex-grow-1 mx-0 my-0" />
+		</div>
+		<div class="box">
+
+			<form id="contact-form" class="is-flex is-flex-direction-column is-gap-4">
+				<p id="contact-form-error" class="mb-4"></p>
+
+				<div class="field name-field">
+					<label class="label">Name</label>
+					<div class="control">
+						<input class="input" type="text" name="name" placeholder="Your Name"
+							required>
+					</div>
+				</div>
+				<div class="field email-field">
+					<label class="label">Email</label>
+					<div class="control">
+						<input class="input" type="email" name="email"
+							placeholder="you@example.com" required>
+					</div>
+				</div>
+				<div class="field website-field">
+					<label class="label">Website</label>
+					<div class="control">
+						<input class="input" type="text" name="website"
+							placeholder="yourwebsite.com">
+					</div>
+				</div>
+				<div class="field message-field">
+					<label class="label">Message</label>
+					<div class="control">
+						<textarea class="textarea" name="message"
+							placeholder="Your message here..." required></textarea>
+					</div>
+				</div>
+				<div class="cf-turnstile" data-sitekey="{{ site.data.contact.cf_sitekey }}"></div>
+				<div class="control">
+					<button class="button is-success" type="submit">Send</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

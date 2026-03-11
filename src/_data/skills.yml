@@ -1,0 +1,46 @@
+- name: Languages
+  entries:
+    - C
+    - C++
+    - Python
+    - Go
+    - Java
+    - TypeScript
+    - JavaScript
+    - Perl
+    - HTML
+    - CSS
+    - SQL
+    - Bash
+- name: Embedded Systems
+  entries:
+    - AVR
+    - ESP32
+    - STM32
+    - FreeRTOS
+    - ESP-IDF
+    - Arduino
+- name: Databases
+  entries:
+    - PostgreSQL
+    - Oracle Database
+    - SQLite
+    - MySQL
+    - MongoDB
+    - Redis
+- name: Web Frameworks
+  entries:
+    - React
+    - SvelteKit
+    - Next.js
+    - Express.js
+    - Flask
+    - Angular
+    - Spring Boot
+- name: DevOps
+  entries:
+    - Docker
+    - Jenkins
+    - GitHub Actions
+    - Terraform
+    - Linux

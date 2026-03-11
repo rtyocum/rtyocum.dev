@@ -1,0 +1,365 @@
+/* ── Terminal widget ── */
+.terminal-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+
+  &,
+  & * {
+    overflow: visible;
+  }
+
+  // trash icon
+  .trash {
+    position: absolute;
+    bottom: 0;
+
+    svg {
+      fill: var(--muted);
+      width: 180px;
+      height: auto;
+    }
+
+    #trash-lid {
+      transform-origin: 3px 2.5px;
+      display: none;
+      transform: rotate(-120deg);
+    }
+
+    #trash-body {
+      transform: translateY(20px);
+      display: none;
+    }
+  }
+
+  // lick SVG
+  .icon.icon-lick {
+    fill: var(--text);
+    width: 250px;
+    height: 45px;
+  }
+}
+
+.terminal-container.closing .terminal-root {
+  animation: termAnim 1.6s ease-in-out forwards;
+}
+
+.terminal-container.opening .terminal-root {
+  animation: termAnim 1.6s ease-in-out reverse;
+}
+
+@keyframes termAnim {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateY(-100px) scale(0.4);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(100px) scale(0.4);
+    opacity: 0;
+  }
+
+  75% {
+    transform: translateY(100px) scale(0.4);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(100px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.terminal-container.closing,
+.terminal-container.opening {
+  .trash #trash-body {
+    display: block;
+    animation: trashBodyAnim 1.6s ease-in-out forwards;
+  }
+
+  .trash #trash-lid {
+    display: block;
+    animation: trashLidAnim 1.6s ease-in-out forwards;
+  }
+}
+
+.terminal-container.opening {
+  .trash #trash-body {
+    animation-direction: reverse;
+  }
+
+  .trash #trash-lid {
+    animation-direction: reverse;
+  }
+}
+
+@keyframes trashBodyAnim {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes trashLidAnim {
+  0% {
+    transform: translateY(20px) rotate(-120deg);
+    opacity: 0;
+  }
+
+  25% {
+    transform: rotate(-120deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(-120deg) rotate(0deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+
+.terminal-root {
+  font-family: 'JetBrains Mono', monospace;
+  width: 400px;
+}
+
+/* box override - disable global hover lift */
+.terminal-root .box {
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface);
+
+  &:hover {
+    transform: none;
+    border-color: var(--border);
+  }
+}
+
+/* title bar */
+.terminal-bar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terminal-bartitle {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+/* close button */
+.terminal-close {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--terminal-close);
+  position: relative;
+  cursor: default;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: var(--terminal-close-hover);
+  }
+
+  .icon {
+    fill: var(--terminal-close-inner);
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* scroll area */
+.terminal-body {
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--surface), transparent);
+    z-index: 1;
+  }
+}
+
+.terminal-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* lines */
+.terminal-line {
+  font-size: 11px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-all;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.12s;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.terminal-blank-line {
+  height: 8px;
+  flex-shrink: 0;
+}
+
+/* colors */
+.terminal-prompt {
+  color: var(--accent);
+}
+
+.terminal-cmd {
+  color: var(--text);
+}
+
+.terminal-out {
+  color: var(--muted);
+}
+
+.terminal-hi {
+  color: var(--accent-tag);
+}
+
+.terminal-ok {
+  color: var(--accent);
+}
+
+.terminal-warn {
+  color: #d29922;
+}
+
+.terminal-dim {
+  color: var(--terminal-dim);
+}
+
+.terminal-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* status bar */
+.terminal-statusbar {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 6px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: .06em;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.terminal-status-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
+  margin-right: 5px;
+  animation: terminal-pulse 2.4s ease-in-out infinite;
+}
+
+.terminal-open {
+  position: absolute;
+}
+
+/* cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: terminal-blink 1.1s step-end infinite;
+}
+
+/* animations */
+@keyframes terminal-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes terminal-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}

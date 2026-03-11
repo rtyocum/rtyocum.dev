@@ -1,0 +1,38 @@
+/* ── Color tokens ── */
+:root {
+  --bg: #ffffff;
+  --bg-hero: #f8fafc;
+  --surface: #f1f5f9;
+  --surface-hover: #e2e8f0;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #16a34a;
+  --accent-tag: #0369a1;
+  --tag-bg: #e0f2fe;
+  --tag-border: #bae6fd;
+  --terminal-dim: #aebfd5;
+  --terminal-close-inner: #323237;
+  --terminal-close: #e0e0e1;
+  --terminal-close-hover: #d6d6d7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1117;
+    --bg-hero: #0f1117;
+    --surface: #161c27;
+    --surface-hover: #1e2530;
+    --border: #1e2530;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #4ade80;
+    --accent-tag: #38bdf8;
+    --tag-bg: #1e2d40;
+    --tag-border: #1e3a52;
+    --terminal-dim: #3b485e;
+    --terminal-close-inner: #ffffff;
+    --terminal-close: #282e3e;
+    --terminal-close-hover: #3b485e;
+  }
+}
