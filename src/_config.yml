@@ -25,3 +25,10 @@ plugins:
 
 sass:
   sourcemap: development
+
+author: "Ryan Yocum"
+social:
+  name: "Ryan Yocum"
+  links:
+    - https://www.linkedin.com/in/ryan-yocum
+    - https://github.com/rtyocum
