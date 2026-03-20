@@ -8,14 +8,14 @@ function runTerminal() {
 		tz: 'America/New_York', // timezone for clock display
 	};
 
-	const FACTS = [
+	const facts = () => [
+		{ text: `Do you like jazz?\n${LICK_SVG}\n\nIf you know you know....`, raw: true },
 		{ text: 'Have fun exploring my site! Here are some random facts while you do.', raw: false },
 		{ text: 'Use Gmail? Hate spam? Delete it with [this](https://github.com/rtyocum/gmail-purge)', raw: false },
 		{ text: 'No longer suffering in VSCode...', raw: false },
 		{ text: 'Like books? Check out my [goodreads](https://www.goodreads.com/ryan-yocum)', raw: false },
 		{ text: 'I co-hosted a workshop on Angular @ RIT. Its a bit dated but [check it out](https://www.se.rit.edu/~rty4159/)', raw: false },
 		{ text: 'From my favorite book: ""Sometimes I think my papa is an accordion."', raw: false },
-		{ text: `Do you like jazz?\n${LICK_SVG}\nIf you know you know....`, raw: true },
 	]
 
 	// ──────────────────────────────────────────────────────────
@@ -143,7 +143,8 @@ function runTerminal() {
 	}
 
 	function buildSession() {
-		const fact = FACTS[factIdx++ % FACTS.length];
+		const fact_list = facts();
+		const fact = fact_list[factIdx++ % fact_list.length];
 		const hour = new Date().getHours();
 		const greet = 'Good ' + (hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening') + '. Welcome to my website!';
 
@@ -250,6 +251,7 @@ function runTerminal() {
 }
 
 fetch(LICK_URL).then(r => r.text()).then(svg => {
+	console.log(svg);
 	LICK_SVG = svg;
 });
 
