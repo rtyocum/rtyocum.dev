@@ -3,7 +3,7 @@ order: 3
 title: My Website
 organization: Personal Project
 description: "This very website! Hope you like it :). Had a lot of fun building it, while also learning about Jekyll, as I didn't want to use React. No one needs a virtual DOM for a simple website like this."
-tags: ["Jekyll", "HTML", "CSS", "JavaScript", "BulmaCSS"]
+tags: ["Jekyll", "HTML", "CSS", "JavaScript", "BulmaCSS", "AWS", "Cloudflare", "Terraform", "S3", "CloudFront", "Lambda", "Simple Email Service"]
 github: "https://github.com/rtyocum/rtyocum.dev"
 ---
 # My Website
