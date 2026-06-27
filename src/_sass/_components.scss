@@ -90,3 +90,7 @@ hr {
 .max-w-2xl {
   max-width: 600px;
 }
+
+.paused {
+  animation-play-state: paused;
+}

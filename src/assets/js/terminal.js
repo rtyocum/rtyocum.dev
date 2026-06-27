@@ -51,16 +51,52 @@ function runTerminal() {
 
 	const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+	function getHourInTimeZone(date, timeZone) {
+		return Number(
+			new Intl.DateTimeFormat('en-US', {
+				timeZone,
+				hour: '2-digit',
+				hour12: false,
+			})
+				.formatToParts(date)
+				.find(p => p.type === 'hour').value
+		);
+	}
+
 	// clock
 	function updateClock() {
-		document.getElementById('terminalClock').textContent =
-			new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: CONFIG.tz });
+		const terminalClock = document.getElementById('terminalClock');
+		const terminalStatus = document.getElementById('terminalStatus');
+		const terminalStatusDot = document.getElementById('terminalStatusDot');
+		const date = new Date()
+		const dateString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: CONFIG.tz });
+		terminalClock.textContent = dateString;
+		// Make sure its EST and online if > 9am and < 5pm
+		const hour = getHourInTimeZone(date, CONFIG.tz);
+		if (hour >= 9 && hour < 17) {
+			terminalStatus.textContent = 'online';
+			terminalStatusDot.classList.add('online');
+		} else {
+			terminalStatus.textContent = 'offline';
+			terminalStatusDot.classList.remove('online')
+		}
+
 	}
 	updateClock();
 	setInterval(updateClock, 10000);
 
+
+	let pendingScroll = false;
+
 	function scrollToBottom() {
-		scroll.scrollTop = scroll.scrollHeight;
+		if (pendingScroll) return;
+
+		pendingScroll = true;
+
+		requestAnimationFrame(() => {
+			scroll.scrollTop = scroll.scrollHeight;
+			pendingScroll = false;
+		});
 	}
 
 	function trim() {
@@ -114,9 +150,12 @@ function runTerminal() {
 		d.append(p, t);
 		scroll.appendChild(d);
 		trim();
+
+		let content = '';
 		for (const ch of text) {
 			scrollToBottom();
-			t.textContent += ch;
+			content += ch;
+			t.textContent = content;
 			await sleep(TYPE + (Math.random() * 12 - 6));
 		}
 		return d; // so caller can append cursor
@@ -257,6 +296,10 @@ fetch(LICK_URL).then(r => r.text()).then(svg => {
 
 // Its hidden on mobile, so don't waste resources running it if we don't have to
 const root = document.getElementById('terminalRoot');
-if (root && window.getComputedStyle(root).display !== 'none') {
-	runTerminal();
+if (root && window.innerWidth > 768) {
+	window.addEventListener('load', () => {
+		requestIdleCallback(() => {
+			runTerminal();
+		});
+	});
 }

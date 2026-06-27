@@ -318,10 +318,15 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 5px var(--accent);
+  background: var(--terminal-dim);
+  box-shadow: none;
   margin-right: 5px;
   animation: terminal-pulse 2.4s ease-in-out infinite;
+}
+
+.terminal-status-dot.online {
+  background: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
 }
 
 .terminal-open {

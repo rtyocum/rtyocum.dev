@@ -48,8 +48,7 @@ function showLoading() {
 }
 
 function showSuccess(message) {
-	loaderBorder.style.transform = getComputedStyle(loaderBorder).transform;
-	loaderBorder.style.animation = 'none';
+	loaderBorder.classList.add('paused');
 
 	requestAnimationFrame(() => {
 		requestAnimationFrame(() => {
